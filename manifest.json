@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Auto aternos 24/7",
+  "version": "1.0",
+  "description": "Automatically clicks a button add time and is offine server can run",
+  "permissions": ["scripting"],
+  "content_scripts": [
+    {
+      "matches": ["https://aternos.org/server/"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
