@@ -20,7 +20,6 @@ setTimeout(async() => {
         setTimeout(resolve,300000);
     });
     location.reload();
-}
 }, 1);
 setInterval(async() => {
 const e = document.querySelector('.server-actions.offline');
