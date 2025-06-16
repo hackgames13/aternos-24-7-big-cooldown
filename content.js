@@ -15,6 +15,13 @@ setTimeout(async() => {
       }
 }
 }, 1);
+setTimeout(async() => {
+    await new Promise((resolve, reject) => {
+        setTimeout(resolve,300000);
+    });
+    location.reload();
+}
+}, 1);
 setInterval(async() => {
 const e = document.querySelector('.server-actions.offline');
 if (e) {
