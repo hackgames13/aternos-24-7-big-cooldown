@@ -1,42 +1,35 @@
 (async function findAndClickButton() {
-setTimeout(async() => {
-    while (true) {
-      if (document.querySelector('.btn.btn-tiny.btn-success.server-extend-end') && document.querySelector('.extend').style.display !== 'none') {
-        document.querySelector('.btn.btn-tiny.btn-success.server-extend-end').click();
-        console.log("✅ Button clicked!");
-        await new Promise((resolve, reject) => {
-            setTimeout(resolve,10000);
-        });
-      } else {
-        console.log("❌ Button not found.");
-                await new Promise((resolve, reject) => {
-            setTimeout(resolve,2000);
-        });
-      }
-}
-}, 1);
-setTimeout(async() => {
-    await new Promise((resolve, reject) => {
-        setTimeout(resolve,300000);
-    });
-    location.reload();
-}, 1);
-setInterval(async() => {
-const e = document.querySelector('.server-actions.offline');
-if (e) {
-    const startButton = e.querySelector('#start');
+  // Click extend button if visible
+  setInterval(async () => {
+    const button = document.querySelector('.btn.btn-tiny.btn-success.server-extend-end');
+    const extend = document.querySelector('.extend');
+    if (button && extend && extend.style.display !== 'none') {
+      button.click();
+      console.log("✅ Button clicked!");
+      await new Promise(resolve => setTimeout(resolve, 10000));
+    } else {
+      console.log("❌ Button not found.");
+    }
+  }, 2000);
+
+  // Reload page every 5 minutes
+  setTimeout(() => location.reload(), 300000);
+
+  // Attempt to start offline server
+  setInterval(() => {
+    const e = document.querySelector('.server-actions.offline');
+    const startButton = e?.querySelector('#start');
     if (startButton) {
-        startButton.click();
+      startButton.click();
     }
-}
-},6000);
-setInterval(() => {
-    const q = document.querySelector(".alert-buttons.btn-group");
-    if (q) {
-        const w = q.querySelector(".btn.btn-green");
-        if (w) {
-            w.click();
-        }
+  }, 6000);
+
+  // Dismiss green alert buttons
+  setInterval(() => {
+    const alertBox = document.querySelector(".alert-buttons.btn-group");
+    const greenButton = alertBox?.querySelector(".btn.btn-green");
+    if (greenButton) {
+      greenButton.click();
     }
-}, 1000);
+  }, 1000);
 })();
